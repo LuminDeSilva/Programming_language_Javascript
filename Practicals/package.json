@@ -1,0 +1,14 @@
+{
+	"name":"studentapp",
+	"version":"1.0.0",
+	"description":"Student details management api",
+	"main":"index.js",
+	"author":"S.Sara",
+	"dependencies":{
+		"express":"4.18.2",
+		"nodemon":"2.0.19"
+	},
+	"scripts":{
+		"start":"nodemon index.js"
+	}
+}
