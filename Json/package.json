@@ -1,0 +1,14 @@
+{
+	"name":"firstapp",
+	"version":"1.0.0",
+	"description":"First application try to express with node.js",
+	"main":"index.js",
+	"author":"S.Sara",
+	"dependencies":{
+		"express":"4.18.2",
+		"nodemon":"2.0.19"
+	},
+	"scripts":{
+		"start":"nodemon index.js"
+	}
+}
