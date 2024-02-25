@@ -1,0 +1,105 @@
+show dbs -> ......show available databases
+
+use library -> .........create a database
+
+.........create a collection
+db.books.insertOne(
+	{
+		"id":41563,
+		"name":"Instruction to NoSQL",
+		"author":"B.K. David"
+	}
+)
+db.books.insertOne(
+	{
+		"id":41563,
+		"name":"MongoDB for Bigginers",
+		"author":"G.Sarma",
+		"publisher":"J.K.Printers"
+	}
+)
+
+show collections -> .........check collections......
+
+.........select a collection........ -> db.books.find()
+
+db.books.insertMany(
+	[{
+		"id":41522,
+		"name":"C++ Programming",
+		"author":"G.Sarma",
+		"publisher":"J.K.Printers"
+	},
+	{
+		"id":41532,
+		"name":"OPP: Object Oriented Programming",
+		"author":"M.Parker",
+		"publisher":"APJ Book center"
+	}]
+)
+
+........select a book
+
+db.books.find({"id":41522})
+db.books.find({"publisher":"J.K.Printers"})
+
+......................................................
+
+create a database studentDB
+
+create a collection student(regno,name,degree,age,gender,gpa,city)
+
+db.student.insertMany(
+	[{
+		"regno":"2019ict37",
+		"name":"D.A.S.Sithumini",
+		"degree":"ICT",
+		"age":22,
+		"gender":"Female",
+		"gpa":3.2,
+		"city":"Gampaha"
+	},
+	{
+		"regno":"2019ict93",
+		"name":"V.N.Gurusinghe",
+		"degree":"ICT",
+		"age":23,
+		"gender":"Female",
+		"gpa":2.9,
+		"city":"Goll"
+	},
+	{
+		"regno":"2019amc67",
+		"name":"D.K.W.Nisansala",
+		"degree":"AMC",
+		"age":23,
+		"gender":"Female",
+		"gpa":3.6,
+		"city":"Gampaha"
+	}]
+)
+
+find it students
+ db.student.find({"degree":"ICT"})
+ 
+find it female studentsfind students from goll
+ db.student.find({"degree":"ICT","gender":"Female","city":"Goll"})
+ 
+find student who are from gampaha or goll
+ db.student.find({"city":{$in:['Gampaha','Goll']}})
+ 
+find students not from gampaha or goll 
+db.student.find({"city":{$nin:['Gampaha','Goll']}})
+
+find students who are elder than 22 $gt or $gte
+db.student.find({"age":{$gt:22}})
+
+find students who's gpa is less than 3
+db.student.find({"gpa":{$lt:3}})
+
+find students who's gpa is equal to 3.2 $eq $ne
+db.student.find({"gpa":{$eq:3.2}})
+db.student.find({"gpa":{$ne:3.2}})
+
+find students who are from Gampaha or who study AMC and has gpa more than 3
+db.student.find({"city":"Gampaha",$or:[{"degree":"AMC","gpa":{$gt:3}}]})
