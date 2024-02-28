@@ -1,0 +1,92 @@
+show dbs ----> show databases
+
+use qa_db ----> create a database
+
+---create a collection---
+
+create a database called qa_db
+create collection as qa_collection and insert following data.
+db.qa_collection.insertMany(
+	[{
+		"question":"What is the capital of France?",
+		"answer":"Paris"
+	},
+	{
+		"question":"Who painted the Mona Lisa?",
+		"answer":"Leonardo da Vinchi"
+	},
+	{
+		"question":"What is the formula for water?",
+		"answer":"H2O"
+	},
+	{
+		"question":"Who wrote the play Halmet?",
+		"answer":"William Shakespeare"
+	},
+	{
+		"question":"Who discovered penicillin?",
+		"answer":"Alexander Fleming"
+	}
+	]
+)
+
+01.retrieve all the details
+qa_db> db.qa_collection.find()
+[
+  {
+    _id: ObjectId("6492715002b38b7eab9a28df"),
+    question: 'What is the capital of France?',
+    answer: 'Paris'
+  },
+  {
+    _id: ObjectId("6492715002b38b7eab9a28e0"),
+    question: 'Who painted the Mona Lisa?',
+    answer: 'Leonardo da Vinchi'
+  },
+  {
+    _id: ObjectId("6492715002b38b7eab9a28e1"),
+    question: 'What is the formula for water?',
+    answer: 'H2O'
+  },
+  {
+    _id: ObjectId("6492715002b38b7eab9a28e2"),
+    question: 'Who wrote the play Halmet?',
+    answer: 'William Shakespeare'
+  },
+  {
+    _id: ObjectId("6492715002b38b7eab9a28e3"),
+    question: 'Who discovered penicillin?',
+    answer: 'Alexander Fleming'
+  }
+]
+
+02.retrieve the answer for question 'who painted the Mona Lisa?'
+qa_db> db.qa_collection.find({"question":"Who painted the Mona Lisa?"})
+  {
+    _id: ObjectId("6492715002b38b7eab9a28e0"),
+    question: 'Who painted the Mona Lisa?',
+    answer: 'Leonardo da Vinchi'
+  }
+
+03.retrieve the question for answer 'H2O'
+qa_db> db.qa_collection.find({"answer":"H2O"})
+  {
+    _id: ObjectId("6492715002b38b7eab9a28e1"),
+    question: 'What is the formula for water?',
+    answer: 'H2O'
+  }
+
+04.update the answer for a specific question
+qa_db> db.qa_collection.updateOne({"answer":"Leonardo da Vinchi"},{$set:{"answer":"sarani sithumini"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+05.delete the answer for a specific question
+qa_db> db.qa_collection.deleteOne({"question":"Who wrote the play Halmet?","answer":"William Shakespeare"})
+{ acknowledged: true, deletedCount: 1 }
+qa_db>
